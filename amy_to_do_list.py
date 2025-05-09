@@ -140,7 +140,7 @@ def send_task_email(email_body, to_address):
         smtp.send_message(msg)
 
 # Then call:
-send_task_email(email_body, "amy.lou.wils@gmail.com")
+send_task_email(email_body, "Amy.wilson@ricardslodge.merton.sch.uk")
 
 
 
