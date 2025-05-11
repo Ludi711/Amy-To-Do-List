@@ -11,7 +11,6 @@ import json
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
 
-
 # Define Google Sheets API scope
 scope = [
     "https://spreadsheets.google.com/feeds",
@@ -82,17 +81,13 @@ today_count = len(due_today)
 upcoming_count = len(upcoming)
 
 
-# Final prompt for ChatGPT
-prompt = f"""
-You are "Pixel", Amy's AI personal assistant.
+# 🟨 CREATE GPT PROMPT
 
-Write a concise, clear email summarizing her tasks for the day. Be warm and friendly, but keep the tone efficient — no unnecessary intro or fluff. Just a light greeting and helpful task summary.
+# Base summary
+summary_line = f"You have {overdue_count} overdue task(s), {today_count} due today, and {upcoming_count} coming up."
 
-At the top of the email, include a one-line summary like:
-"You have 1 overdue task, 2 due today, and 3 coming up."
-
-Then present the tasks by category, sorted by priority.
-
+# Task sections
+task_sections = f"""
 🟥 Overdue Tasks ({overdue_count}):
 {overdue_text or '- None'}
 
@@ -101,9 +96,34 @@ Then present the tasks by category, sorted by priority.
 
 📅 Upcoming (next 3 days) ({upcoming_count}):
 {upcoming_text or '- None'}
-
-End with a single uplifting quote or affirmation. Sign off as Pixel.
 """
+
+# Strict prompt to avoid hallucination
+if overdue_count == 0 and today_count == 0 and upcoming_count == 0:
+    instruction = """
+There are no outstanding tasks today. Do not fabricate or imagine any. 
+Just write a warm, cheerful greeting to Amy and include a short uplifting quote. 
+Sign off as Pixel."""
+else:
+    instruction = """
+Only use the actual tasks provided below — do not create or invent any tasks. 
+Structure the message as a warm, efficient daily update.
+Sign off as Pixel."""
+
+# Final prompt
+prompt = f"""
+You are "Pixel", Amy's AI personal assistant.
+
+Write a concise, clear email summarizing her tasks for the day. Use a warm tone, but keep it efficient and readable.
+
+Start with this summary line:
+"{summary_line}"
+
+{task_sections}
+
+{instruction}
+"""
+
 
 print(prompt)
 
@@ -141,6 +161,12 @@ def send_task_email(email_body, to_address):
 
 # Then call:
 send_task_email(email_body, "Amy.wilson@ricardslodge.merton.sch.uk")
+
+
+
+
+
+
 
 
 
