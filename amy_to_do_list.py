@@ -114,22 +114,6 @@ summary_line = (
 )
 
 
-# Task sections
-task_sections = f"""
-🟥 Overdue Tasks ({overdue_count}):
-{overdue_text or '- None'}
-
-🟩 Tasks Due Today ({today_count}):
-{today_text or '- None'}
-
-📅 Upcoming (next 3 days) ({upcoming_count}):
-{upcoming_text or '- None'}
-
-📆 Later Tasks (beyond 3 days) ({later_count}):
-{later_text or '- None'}
-"""
-
-
 # Strict prompt to avoid hallucination
 if overdue_count == 0 and today_count == 0 and upcoming_count == 0 and later_count == 0:
 
