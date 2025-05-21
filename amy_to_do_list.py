@@ -94,12 +94,6 @@ def format_summary_section(df, label):
             parts.append(f"• {summary[level]} {level}")
     return "\n".join(parts)
 
-
-# Format each section
-overdue_text = format_tasks(overdue)
-today_text = format_tasks(due_today)
-upcoming_text = format_tasks(upcoming)
-
 # Add task counts
 overdue_count = len(overdue)
 today_count = len(due_today)
