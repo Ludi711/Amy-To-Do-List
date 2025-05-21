@@ -99,7 +99,6 @@ overdue_count = len(overdue)
 today_count = len(due_today)
 upcoming_count = len(upcoming)
 later = incomplete_df[incomplete_df['Due Date'] > today + pd.Timedelta(days=3)]
-later_text = format_tasks(later)
 later_count = len(later)
 
 
