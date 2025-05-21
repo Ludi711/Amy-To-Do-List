@@ -10,6 +10,7 @@ import os
 import json
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
+from openai import OpenAI
 
 # Define Google Sheets API scope
 scope = [
@@ -23,6 +24,10 @@ creds_dict = json.loads(os.environ["GOOGLE_CREDS_JSON"])
 creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 
 client = gspread.authorize(creds)
+
+OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+openai_client = OpenAI(api_key=OPENAI_API_KEY)
+GMAIL_APP_PASSWORD = os.environ["GMAIL_APP_PASSWORD"]
 
 # Open your Google Sheet (sheet name must match exactly)
 sheet = client.open("Amy - To Do List").sheet1
@@ -157,12 +162,7 @@ End the email with a single motivational quote or affirmation. Sign off as Pixel
 
 """
 
-
-from openai import OpenAI
-
-client = OpenAI(api_key=OPENAI_API_KEY)
-
-response = client.chat.completions.create(
+response = openai_client.chat.completions.create(
     model="gpt-4o",
     messages=[{"role": "user", "content": prompt}],
     temperature=0.7
