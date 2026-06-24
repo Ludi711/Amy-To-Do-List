@@ -1,55 +1,49 @@
-# Amy-To-Do-List
+# AI-Assisted Daily Task Email Assistant
 
-# AI-Assisted Personal Task Assistant
+A lightweight Python assistant that turns a user-maintained CSV task list into a clear daily email summary using structured ChatGPT prompts.
 
-A lightweight Python-based task assistant that uses a user-maintained CSV template and structured ChatGPT prompts to generate clear daily task summaries.
-
-The project was built to explore how simple structured data, prompt design and automation can be combined to reduce manual admin. The user keeps their tasks updated in a basic CSV file, and the assistant processes that data into a more useful daily summary, highlighting overdue tasks, tasks due today, upcoming items and lower-priority later actions.
+The tool reads an existing task list, groups items by urgency and due date, and emails the user a simple overview of what needs attention today, what is overdue and what can wait.
 
 ## Key Features
 
-* Uses a simple CSV template as the source of truth
-* Allows the user to maintain their own task list without needing a complex app
-* Groups tasks into overdue, due today, upcoming and later categories
-* Uses ChatGPT prompts to generate a clear, human-readable daily summary
-* Highlights urgent actions and short-term priorities
-* Produces a more supportive and readable output than a standard task table
-* Designed to be extendable into email delivery, dashboard views or calendar integration
+* Uses a simple CSV file as the source of truth
+* Works with the user's existing task list format
+* Groups tasks by overdue, due today, upcoming and later
+* Uses ChatGPT prompts to generate a clear, supportive summary (includes motivational quotes)
+* Sends the summary by email automatically
+* Keeps the process lightweight without requiring a new task management app
 
 ## Tools Used
 
 * Python
 * pandas
-* CSV-based data input
-* ChatGPT / LLM prompt design
-* datetime logic
-* Automated message generation
+* CSV input
+* ChatGPT / LLM prompts
+* Email automation
+* Scheduled workflow automation
 
 ## Why I Built It
 
-I built this project to help my girlfriend get on top of a growing to do list that had become a bit overwhelming.
+I built this to help my girlfriend manage a growing to do list that had become a bit overwhelming.
 
-Rather than creating a full task management app or asking her to change how she already kept track of things, I designed it around the format of her existing task list. The idea was to keep the input simple, just a CSV file she could continue updating in the same way, and use the automation to turn that long list into a clearer daily plan.
+Rather than asking her to change how she tracked things, I designed the assistant around her existing CSV task list. The aim was to keep the input simple, then use automation and ChatGPT prompts to turn the list into a more helpful daily email.
 
-ChatGPT prompts are used to make the output feel more encouraging and less like reading a spreadsheet. Alongside prioritising tasks, the assistant generates a light hearted summary to help keep motivation up and make the whole process feel less daunting.
-
-It was a fun project that combined automation, AI and a real world problem, while exploring how simple tools can make everyday admin a little easier to manage without adding extra process.
+The ChatGPT output makes the summary feel more encouraging and light hearted, while still giving a clear view of what needs doing first.
 
 ## How It Works
 
-1. The user updates a CSV file with their current tasks, due dates and any relevant notes.
-2. The Python script reads and processes the CSV data.
-3. Tasks are grouped based on due date and urgency.
-4. A structured ChatGPT prompt is generated using the processed task data.
-5. The AI response is used to create a concise daily task summary and motivational information to help start the users day!
-6. The final output can be reviewed, copied, emailed or adapted for future delivery methods.
+1. The user updates their CSV task list.
+2. The Python script reads and processes the task data.
+3. Tasks are grouped by urgency and due date.
+4. A structured ChatGPT prompt generates a daily summary.
+5. The summary is automatically emailed to the user.
 
 ## Example Use Case
 
-A user has a list of personal admin tasks stored in a CSV file. Instead of manually reviewing the full list each day, the assistant generates a short summary showing:
+Each day, the user receives an email showing:
 
-* What is overdue
-* What needs attention today
-* What is coming up soon
-* What can wait until later
-* A short motivational or supportive closing note
+* Overdue tasks
+* Tasks due today
+* Upcoming tasks
+* Lower-priority items
+* A short motivational note
